@@ -1,20 +1,22 @@
-FROM node:18-alpine
-LABEL authors="phu.dangn"
-
+# Builder
+FROM node:18-alpine as builder
 WORKDIR /app
-
+COPY package.json .
+COPY pnpm-lock.yaml .
 RUN corepack enable
 RUN corepack prepare pnpm@8.5.1 --activate
+RUN pnpm install
+
 COPY . .
 RUN pnpm run build
+RUN pnpm install --prod
+
+# Runner
+FROM node:18-alpine as runner
+WORKDIR /app
+
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
 
 EXPOSE 3000
 CMD ["pnpm", "start"]
-# ENTRYPOINT ["pnpm", "start"]
-# -> when run docker run -it <image> hostname
-# new command will override the existed one
-# CMD ["pnpm", "start"]
-# -> when run docker run -it <image> hostname
-# ->  hostname will be bind to the final
-# -> pnpm run start hostname
-# docker run -p 3000:3000 docker-training

@@ -9,7 +9,6 @@ docker rmi $(docker images | grep 'chuotcona123')
 docker stop $(docker ps | grep <your_container_name> | awk '{print $1}')
 ```
 
-```
 ## Build our image
 ```
 docker build . -t chuotcona123/training:latest
