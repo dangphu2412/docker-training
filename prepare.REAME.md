@@ -15,6 +15,8 @@ docker stop $(docker ps | grep <your_container_name> | awk '{print $1}')
 ## Build our image
 ```
 docker build . -t chuotcona123/training:latest
+# Build dev
+docker build . -f Dockerfile.dev -t chuotcona123/training:latest
 ```
 
 ## Run our image
@@ -25,6 +27,12 @@ docker run --name training chuotcona123/training:latest
 - Expose it to the external
 ```
 docker run --name training2 -d -p 3000:3000 chuotcona123/training:latest
+docker run --name training2 -d -p 3000:3000 -v $(pwd):/app chuotcona123/training:latest
+```
+
+- Exec the running container
+```
+docker exec -it training2 sh
 ```
 
 - Tagging image:

@@ -15,8 +15,9 @@ RUN pnpm install --prod
 FROM node:18-alpine as runner
 WORKDIR /app
 
+COPY package.json .
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
 
 EXPOSE 3000
-CMD ["pnpm", "start"]
+CMD ["npm", "run", "start"]
