@@ -5,9 +5,12 @@
 docker image ls
 docker images -a |  grep "chuotcona123"
 docker ps -a |  grep "chuotcona123"
-docker rmi $(docker images | grep 'chuotcona123')
+docker rmi $(docker images | grep 'chuotcona123' | awk '{print $1}')
 docker stop $(docker ps | grep <your_container_name> | awk '{print $1}')
 ```
+
+- Grep -> support to pipe the search pattern and find out the result
+- awk -> tool of linux help us to generate report to the commandlines
 
 ## Build our image
 ```
