@@ -1,10 +1,11 @@
 import express from 'express';
+import {registerUserModule} from "./modules/users";
+import {registerDatabaseModule} from "./modules/db";
 
 const app = express()
 
-app.get('/', (req, res) => {
-    return res.status(200).send('Hello World 3!');
-});
+registerUserModule(app);
+registerDatabaseModule();
 
 app.listen(3000, () => {
     console.log('Listening on port 3000');

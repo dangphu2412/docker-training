@@ -8,7 +8,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist",
-    "build": "tsc"
+    "build": "tsc",
+    "migrate": "npm run build && node dist/modules/db/migrations/v1.0.0.migration.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,9 @@
   },
   "homepage": "https://github.com/dangphu2412/docker-training#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongodb": "^6.2.0",
+    "mongoose": "^7.6.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",

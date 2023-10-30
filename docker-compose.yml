@@ -8,3 +8,11 @@ services:
   redis:
     image: redis:alpine
     restart: always
+  mongo:
+    container_name: training-mongo
+    image: mongo:4.0.26-xenial
+    restart: always
+    volumes:
+      - ./docker/data:/data/db
+    ports:
+      - "27017:27017"
