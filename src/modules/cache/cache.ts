@@ -7,7 +7,7 @@ interface Cache {
 
 class RedisStore implements Cache {
   private store = createClient({
-    url: 'redis://localhost:6379',
+    url: process.env.REDIS_URL,
   })
 
   async connect(): Promise<void> {
