@@ -7,8 +7,7 @@ export async function registerDatabaseModule() {
   if (!url) {
     throw new Error('MONGO_URL is not defined');
   }
-
   console.log('Database connected');
-
   await new DbConnector(url).connect();
+  console.log('Database connected');
 }

@@ -6,10 +6,13 @@ import {registerDatabaseModule} from "./modules/db";
 
 const app = express()
 
-registerUserModule(app);
-registerDatabaseModule();
-// registerCache();
+async function bootstrap() {
+    registerUserModule(app);
+    await registerDatabaseModule();
 
-app.listen(3001, () => {
-    console.log('Listening on port 3001');
-});
+    app.listen(3001, () => {
+        console.log('Listening on port 3001');
+    });
+}
+
+bootstrap();
