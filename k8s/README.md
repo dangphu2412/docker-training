@@ -32,8 +32,8 @@ kubectl get all
 
 - ConfigMap and Secret must be created before the deployment
 ```bash
-kubectl create configmap my-config --from-literal=key1=config
-kubectl create secret generic my-secret
+#kubectl create configmap my-config --from-literal=key1=config
+#kubectl create secret generic my-secret
 
 #Apply manages app through files defining in k8s resources
 kubectl apply -f k8s/mongo-config.yaml
@@ -55,6 +55,7 @@ minikube ip
 kubectl get node -o wide
 # Delete all deployments
 kubectl delete deployment --all --namespace=default
+kubectl delete -f  configmap.yaml  -n  namespacename
 ```
 
 

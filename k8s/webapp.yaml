@@ -2,12 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webapp-deployment
-  # Label dont provide uniqueness, each Pod have different name, but all Pod replicas will have the same label
   labels:
     app: webapp
 spec:
   replicas: 1
-  # Identify a set of resources
   selector:
     matchLabels:
       app: webapp
@@ -41,18 +39,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  # Name of the Service, endpoint as DNS name
   name: webapp-service
 spec:
-  # Default ClusterIP
   type: NodePort
   selector:
     app: webapp
   ports:
     - protocol: TCP
-      # forward request
       port: 3000
       targetPort: 3000
-      # node port for external access
-      # Range: 30000-32767
       nodePort: 30100
