@@ -1,0 +1,5 @@
+docker build . -t chuotcona123/gateway
+docker tag chuotcona123/gateway chuotcona123/gateway:1.0.0
+
+docker build . -t chuotcona123/user-service
+docker tag chuotcona123/user-service chuotcona123/user-service:1.0.0
