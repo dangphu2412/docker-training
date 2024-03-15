@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from 'express';
 import {registerUserModule} from "./modules/users";
 import {registerDatabaseModule} from "./modules/db";
@@ -9,6 +10,6 @@ registerUserModule(app);
 registerDatabaseModule();
 // registerCache();
 
-app.listen(3000, () => {
-    console.log('Listening on port 3000');
+app.listen(3001, () => {
+    console.log('Listening on port 3001');
 });

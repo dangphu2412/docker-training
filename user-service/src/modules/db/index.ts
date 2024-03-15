@@ -1,5 +1,14 @@
 import {DbConnector} from "./db.connector";
+import * as process from "process";
 
 export async function registerDatabaseModule() {
-  await new DbConnector(process.env['MONGO_URL'] as string).connect();
+  const url = process.env['MONGO_URL'];
+
+  if (!url) {
+    throw new Error('MONGO_URL is not defined');
+  }
+
+  console.log('Database connected');
+
+  await new DbConnector(url).connect();
 }

@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node dist",
+    "start": "tsc && node dist",
     "build": "tsc",
     "migrate": "npm run build && node dist/modules/db/migrations/v1.0.0.migration.js"
   },
