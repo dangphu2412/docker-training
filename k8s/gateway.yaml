@@ -20,16 +20,6 @@ spec:
           ports:
             - containerPort: 3000
           env:
-            - name: USER_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: mongo-secret
-                  key: mongo-user
-            - name: USER_PWD
-              valueFrom:
-                secretKeyRef:
-                  name: mongo-secret
-                  key: mongo-password
             - name: MONGO_URL
               valueFrom:
                 configMapKeyRef:
@@ -49,3 +39,23 @@ spec:
       port: 3000
       targetPort: 3000
       nodePort: 30101
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+    - host: demo.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-service
+                port:
+                  number: 3000
+

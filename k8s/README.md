@@ -50,7 +50,7 @@ kubectl apply -f k8s/user-service.yaml
 - Get the minikube ip to access the application
 ```bash
 minikube ip
-minikube service webapp-service
+minikube service gateway-service
 
 # To get the port
 kubectl get node -o wide
@@ -62,7 +62,11 @@ kubectl delete -f  configmap.yaml  -n  namespacename
 ```
 Log k8s
 kubectl logs gateway-deployment-...
+
 Restart deployment
 kubectl rollout restart deployment/user-deployment
+
+Ingress
+kubectl get ing
 ```
 - https://stackoverflow.com/questions/71634186/cannot-connect-to-kubernetes-nodeport-service

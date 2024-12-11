@@ -1,15 +1,13 @@
 # Builder
 FROM node:18-alpine as builder
 WORKDIR /app
-COPY package.json .
-COPY pnpm-lock.yaml .
-RUN corepack enable
-RUN corepack prepare pnpm@8.5.1 --activate
+
+COPY package.json pnpm-lock.yaml ./
+RUN npm i -g pnpm
 RUN pnpm install
 
-COPY .. .
-RUN pnpm run build
-RUN pnpm install --prod
+COPY . .
+RUN pnpm run build && pnpm install --prod
 
 # Runner
 FROM node:18-alpine as runner
