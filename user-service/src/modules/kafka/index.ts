@@ -2,7 +2,7 @@ import { Kafka } from 'kafkajs';
 
 const kafka = new Kafka({
   clientId: 'user-service',
-  brokers: ['localhost:9092', 'localhost:9093']
+  brokers: ['localhost:9092', 'localhost:9093', 'localhost:9094']
 });
 
 export const producer = kafka.producer()
@@ -12,11 +12,6 @@ export async function registerKafka() {
   console.log('Connecting Kafka')
 
   await producer.connect();
-  await kafka.admin().createTopics({
-    topics: [
-      { topic: 'SEND_NOTIFICATION' }
-    ]
-  });
 
   console.log('Connect Kafka success')
 }
