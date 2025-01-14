@@ -34,4 +34,20 @@ export function registerUserModule(app: Express) {
       data: user
     })
   })
+
+  app.patch('/:id', async (req, res) => {
+    const user = await UserDAO.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({
+        message: 'User not found'
+      })
+    }
+
+    user.subscriberCount += 1;
+    await user.save();
+    return res.status(200).json({
+      data: user
+    });
+  });
 }

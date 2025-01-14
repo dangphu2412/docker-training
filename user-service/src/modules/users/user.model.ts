@@ -5,6 +5,11 @@ const UserModel = new Schema({
     type: String,
     required: true
   },
+  subscriberCount: {
+    type: Number,
+    required: true,
+    default: 0
+  }
 })
 
 export const UserDAO = model('users', UserModel);
